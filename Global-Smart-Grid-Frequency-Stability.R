@@ -13,7 +13,7 @@ beta_val <- 0.12         # Grid Rigidity (VNAE Structural Factor)
 
 # 1. GENERATE HETEROGENEOUS NODE INERTIA (THETA)
 # Models the difference between heavy turbines (high theta) and solar inverters (low theta)
-theta_nodes <- runif(n, min = 1.0, max = 120.0) 
+theta_nodes <- runif(n, min = 1.0, max = 120.0)
 
 # 2. GENERATE ULTRA-SPARSE TRANSMISSION NETWORK (A)
 # Large grids are sparse; each node connects only to a few neighbors
@@ -54,7 +54,7 @@ grid_flow <- function(t, omega, parms) {
 }
 
 # Solving for a short burst to prove contraction
-time_seq <- seq(0, 0.1, by = 0.01)
+time_seq <- seq(0, 10, by = 1)
 solution <- ode(y = omega_init, times = time_seq, func = grid_flow, parms = NULL, method = "euler")
 
 # -------------------------------------------------------------------------
@@ -72,3 +72,4 @@ matplot(solution[,1], solution[,plot_sample], type="l", lty=1, col=rainbow(100, 
         main=paste("VNAE 100k Nodes Grid Stability (K =", round(K_estimate, 4), ")"),
         xlab="Time (seconds)", ylab="Frequency Deviation (Hz)")
 grid()
+
