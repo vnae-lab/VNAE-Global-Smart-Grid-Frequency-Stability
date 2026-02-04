@@ -54,7 +54,7 @@ grid_flow <- function(t, omega, parms) {
 }
 
 # Solving for a short burst to prove contraction
-time_seq <- seq(0, 10, by = 1)
+time_seq <- seq(0, 0.1, by = 0.01)
 solution <- ode(y = omega_init, times = time_seq, func = grid_flow, parms = NULL, method = "euler")
 
 # -------------------------------------------------------------------------
